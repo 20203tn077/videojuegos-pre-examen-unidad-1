@@ -8,8 +8,6 @@ public class AccelerationObject : MonoBehaviour
     void Update()
     {
         _currSpeed += Time.deltaTime * (Input.GetKey(KeyCode.Space) ? 1 : -1);
-        if (_currSpeed < 0) _currSpeed = 0;
-        if (_currSpeed > maxSpeed) _currSpeed = maxSpeed;
-        transform.position += Vector3.forward * _currSpeed;
+        transform.position += Vector3.forward * (_currSpeed = Mathf.Clamp(_currSpeed, 0, maxSpeed));
     }
 }
